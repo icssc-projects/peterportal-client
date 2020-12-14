@@ -1,12 +1,13 @@
 import React from 'react';
 import { min, max } from 'lodash';
+import { emojiSchoolFeature } from '../../util/emoji';
 
 export default function CourseSideInfo(props) {
     return (
         <div>
             <div style={{display: "flex", backgroundColor: "#EEEEEE", padding: "1rem"}}>
                 <div>
-                    💻
+                    {emojiSchoolFeature(props.school)}
                 </div>
                 <div style={{marginLeft: "1.5rem"}}>
                     <h2 style={{marginBottom: "0.2rem"}}>{props.id}</h2>

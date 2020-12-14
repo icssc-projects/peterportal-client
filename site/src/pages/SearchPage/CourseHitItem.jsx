@@ -8,7 +8,7 @@ const CourseHitItem = (props) => (
     <div style={{ display: "flex" }}>
       <div>
         <a href={"/course/" + props.result._id}>
-          <h3>
+          <h3 className={"hit_title"}>
             <span
               className={props.bemBlocks.item("department")}
               dangerouslySetInnerHTML={{

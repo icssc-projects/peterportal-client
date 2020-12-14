@@ -34,17 +34,17 @@ export default class CourseFilter extends React.Component {
 
   constructor(props) {
     super(props);
-    this.getTerms();
+    // this.getTerms();
   }
 
-  getTerms = () => {
-    fetch(`/api/v1/schedule/getTerms`)
-      .then(res => res.json())
-      .then(terms => {
-        terms.reverse();
-        this.setState({ terms: terms })
-      });
-  }
+  // getTerms = () => {
+  //   fetch(`/api/v1/schedule/getTerms`)
+  //     .then(res => res.json())
+  //     .then(terms => {
+  //       terms.reverse();
+  //       this.setState({ terms: terms })
+  //     });
+  // }
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps
@@ -60,7 +60,7 @@ export default class CourseFilter extends React.Component {
     return (
       <div className="filter-list-container">
         <h4>Search Filter</h4>
-        <div style={{ overflowY: "auto" }}>
+        <div style={{ overflowY: "auto", height: "60vh" }}>
           <Accordion>
           <Menu.Item>
               <Accordion.Title active={activeIndex === 0}
