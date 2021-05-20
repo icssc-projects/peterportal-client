@@ -39,9 +39,7 @@ const ProfessorPage = (props) => {
 
   return (
     <div>
-      <section style={{position: "sticky", top: "4rem", height: "min-content", width: "340px", border: "1px solid #EEEEEE", borderRadius: "10px"}}>
-          <ProfSideInfo {...profData} />
-      </section>
+      <ProfSideInfo {...profData} />
       <h3>Schedule of Classes</h3>
       {profData && profData.course_history.length != 0 && <>
         <select name="courses" id="courses" onChange={(event) => {
@@ -65,7 +63,7 @@ const ProfessorPage = (props) => {
           )}
         </select>
       </>}
-      {gradeCourseData && <GradeDist key={gradeCourse} {...gradeCourseData} currentProf={"THORNTON, A."}/>}
+      {gradeCourseData && <GradeDist key={gradeCourse} {...gradeCourseData}/>}
       <h3>Reviews</h3>
       {reviews.map((review, i) => {
           if (review !== null) return (<SubReview review={review} key={i}/>)
