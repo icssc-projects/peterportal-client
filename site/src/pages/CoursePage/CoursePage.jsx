@@ -20,6 +20,7 @@ export default function CoursePage(props) {
     const fetchDataFromApi = async () => {
         const apiResponse = await axios.get('/courses/api/' + props.match.params.id);
         setCourseData(apiResponse.data);
+        console.log(courseData);
     }
 
     useEffect(() => {
@@ -40,7 +41,7 @@ export default function CoursePage(props) {
                     <article style={{marginLeft: "4rem", width:"900px"}}>
                         <Grid.Row>
                             <h2>🌲 Prerequisite Tree</h2>
-                                <Divider />
+                                <Divider /> 
                             <PrereqTree {...courseData}/>
                         </Grid.Row>
 
@@ -56,11 +57,11 @@ export default function CoursePage(props) {
                             <GradeDist {...courseData}/>
                         </Grid.Row>
 
-                        <Grid.Row>
+                        {/* <Grid.Row>
                             <h2 id="grade-dist-label">💬 Reviews</h2>
                                 <Divider />
                             <Review {...courseData}/>
-                        </Grid.Row>
+                        </Grid.Row> */}
                     </article>
                 </div> 
             </Twemoji>

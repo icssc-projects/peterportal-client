@@ -54,8 +54,10 @@ function Tree(props) {
   
 
 export default function PrereqTree(props) {
+    console.log(" The props that came to pre-req tree are: ", props);
     let hasPrereqs = props.prerequisite_tree !== "";
     let hasDependencies = Object.keys(props.prerequisite_for).length !== 0;
+    
 
     if (props.id === undefined) return "";
     else if (!hasPrereqs && !hasDependencies)

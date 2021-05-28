@@ -1,7 +1,27 @@
 import React from 'react';
 import { min, max } from 'lodash';
+import { useQuery, gql } from '@apollo/client';
+import {Link } from "react-router-dom";
+
 
 export default function CourseSideInfo(props) {
+
+    const PROFESSOR_QUERY = gql`
+        query GetIntstructor {
+            course(id: "${props.id}"){
+                instructor_history{
+                    ucinetid
+                    name
+                }
+            }
+        }
+    `;
+
+    const { loading, error, data } = useQuery(PROFESSOR_QUERY);
+
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
+
     return (
         <div>
             <div style={{display: "flex", backgroundColor: "#EEEEEE", padding: "1rem"}}>
@@ -38,13 +58,17 @@ export default function CourseSideInfo(props) {
 
                 {props.professor_history.length != 0 && <div>
                     <h5>Instructor History</h5>
-                        <p>{props.professor_history.map((e) => 
+                        
+                        <p>{data.course.instructor_history.map((prof) => 
                             <div>
                                 <span>
-                                    {e}
+                                    <Link to={{pathname: `/professor/${prof.ucinetid}`}}>
+                                    {prof.name}
+                                    </Link>
                                 </span>
                             </div>
-                        )}</p><br/>
+                        )}
+                        </p><br/>
                     </div>
                 }
             </div>

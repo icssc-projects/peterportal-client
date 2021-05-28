@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
+const graphqlHTTP = require('express-graphql').graphqlHTTP;
 const path = require('path')
+const schema = require('./schema');
 var passport = require('passport');
 var session = require('express-session');
 var MongoDBStore = require('connect-mongodb-session')(session);
@@ -11,6 +13,7 @@ var coursesRouter = require('./controllers/courses')
 var professorsRouter = require('./controllers/professors')
 var scheduleRouter = require('./controllers/schedule')
 var reviewsRouter = require('./controllers/reviews')
+const cors = require('cors');
 var usersRouter = require('./controllers/users')
 
 // setup mongo store for sessions
@@ -63,6 +66,8 @@ app.use(function (req, res, next) {
   next()
 })
 
+app.use(cors());
+
 // Enable JSON use
 app.use(express.json())
 
@@ -84,6 +89,12 @@ app.use("/users", usersRouter);
 app.use('/about', (req, res) => {
   res.render('about');
 });
+
+//sakshi for graphql
+app.use('/graphql', graphqlHTTP({
+  schema,
+  graphiql: true
+}));
 
 /**
  * Routes - Public
